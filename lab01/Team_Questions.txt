@@ -1,0 +1,13 @@
+1.2
+1)
+	a) Junior
+	b) BCS
+	c) A-, A
+2)
+	a) Database-driven web site; Create visualizations from school data and use app selections to limit data shown by various fields, worked with Qlik Sense
+	b) Slack for team communication and Git and GitHub for development of app with a team
+	c) I have an android cell phone v 5.1.1
+	d) The project for monitoring printers on campus, or an online anonomized counseling app. 
+3)
+	a) Openness 56%, Conscientiousness 85%, Extraversion 17%, Agreeableness 60%, and Neuroticism 71%
+	b) Sambridhi Acharya, Sebrina Zeleke, Daniel Kuiper, YK Park

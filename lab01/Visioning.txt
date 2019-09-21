@@ -1,0 +1,7 @@
+Visioning
+1.1
+Idea 1:
+An app that can be used by students and faculty to view the status and location of printers. Students too often have to travel to 3+ printers to find one that is actually working. This is frustrating and wastes time. A printing app could display a campus map with the locations of printers on the map. Dots could be displayed at printer locations color coded with information about their working status or if they need paper etc. Additionally, hours could be displayed next to printers to indicate if the room the printer is in is accessible. This way, users can know where the closest working and accessible printer is located.
+
+Idea 2:
+An app that translates American Sign Language (ASL). There is no app for users to sign to their phone's camera and be told what they are signing. If a person wants to look up a word in ASL, they must already know what that word is in English (or another language) to look it up. If they can already look it up in another language, they probably also know what it means. Some signs in ASL are only distinguishable from one another by facial expression or shoulder movement, and context is important in determining meaning, so creating an app that can actually translate sentences would be difficult.
