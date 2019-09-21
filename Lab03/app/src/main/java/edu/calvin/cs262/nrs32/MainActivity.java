@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
 public class MainActivity extends AppCompatActivity {
     private EditText mMessageEditText;
     public static final int TEXT_REQUEST = 1;
