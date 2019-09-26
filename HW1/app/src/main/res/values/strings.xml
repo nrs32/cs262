@@ -4,10 +4,4 @@
     <string name="value_1">Value 1:</string>
     <string name="operator">Operator:</string>
     <string name="calculate">Calculate</string>
-    <string-array name="operations">
-        <item>+ (add)</item>
-        <item>- (subtract)</item>
-        <item>* (multiply)</item>
-        <item>/ (divide)</item>
-    </string-array>
 </resources>
