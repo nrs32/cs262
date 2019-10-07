@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             if (urlString.length() == 0) {
                 pageSourceText.setText("");
             } else {
-                pageSourceText.setText("");
+                pageSourceText.setText("Check your network connection.");
             }
         }
     }
