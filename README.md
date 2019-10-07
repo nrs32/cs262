@@ -1,2 +1,2 @@
-# cs262
-Android Studio projects and screenshot of working application
+# Software Engineering
+Android Studio projects and screenshots of working applications.
