@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Homework 2</string>
+    <string name="no_results">"No Results Found"</string>
+    <string name="loading">Loading...</string>
+    <string name="no_search_term">Please enter a search term</string>
+    <string name="no_network">Please check your network connection and try again.</string>
+    <string name="enter_url">Enter URL:</string>
+    <string name="www_example_com">www.example.com</string>
+    <string name="get_page_source">Get Page Source</string>
+</resources>
