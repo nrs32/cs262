@@ -10,6 +10,9 @@ import java.util.List;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+/**
+ * Create list of recycler view items to display on screen from player list
+ */
 public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.PlayerViewHolder> {
 
     private final LayoutInflater mInflater;
@@ -17,19 +20,28 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
 
     PlayerListAdapter(Context context) { mInflater = LayoutInflater.from(context); }
 
+    // Create recycler view item for each player
     @Override
     public PlayerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = mInflater.inflate(R.layout.recyclerview_item, parent, false);
         return new PlayerViewHolder(itemView);
     }
 
+    // Bind each unique recycler view (player holder) to a player's info
+    // And set the text values of the recycler view
     @Override
     public void onBindViewHolder(PlayerViewHolder holder, int position) {
         if (mPlayer != null) {
+            // Get current player in list
             Player current = mPlayer.get(position);
+
+            // Set text of main TextView to player name
             holder.playerNameView.setText(current.getPlayerName());
+
+            // Set text of sub TextView to ID followed by Email
             String detailText = "ID: " + current.getId() + "      Email: " + current.getEmail();
             holder.playerDetailsView.setText(detailText);
+
         } else {
             // Covers the case of data not being ready yet.
             holder.playerNameView.setText("No Player");
@@ -51,6 +63,9 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         else return 0;
     }
 
+    // Get both TextViews from Recycler view.
+    // The main playerName view
+    // and the sub details view for Id and Email info
     class PlayerViewHolder extends RecyclerView.ViewHolder {
         private final TextView playerNameView;
         private final TextView playerDetailsView;
@@ -63,6 +78,7 @@ public class PlayerListAdapter extends RecyclerView.Adapter<PlayerListAdapter.Pl
         }
     }
 
+    // Identify player based on location (for deletion of single player)
     public Player getPlayerAtPosition (int position) {
         return mPlayer.get(position);
     }

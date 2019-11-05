@@ -5,7 +5,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-
+/**
+ * Players should have a name, email, and PrimaryKey ID
+ */
 @Entity(tableName = "player_table")
 public class Player {
 
@@ -28,6 +30,7 @@ public class Player {
         this.id = id;
     }
 
+    // Getters for name, email, id
     public String getPlayerName(){return this.playerName;}
     public String getEmail(){return this.email;}
     public String getId(){return this.id;}

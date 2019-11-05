@@ -49,6 +49,7 @@ public abstract class PlayerRoomDatabase extends RoomDatabase {
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final PlayerDao mDao;
+        // Default values
         String[] playerNames = {"Name1", "Name2", "Name3"};
         String[] playerEmails = {"name@gmail.com", "email@calvin.edu", "example@student.nvps.net"};
         String[] playerIds = {"1", "2", "3"};

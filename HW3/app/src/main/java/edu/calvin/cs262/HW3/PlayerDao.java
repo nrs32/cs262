@@ -9,6 +9,9 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
+/**
+ * PlayerDao allows easy interaction with db
+ */
 @Dao
 public interface PlayerDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)

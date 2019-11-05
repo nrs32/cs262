@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Add new player, open new player screen
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // set up recycler view
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         final PlayerListAdapter adapter = new PlayerListAdapter(this);
         recyclerView.setAdapter(adapter);
@@ -118,9 +120,12 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        // Add new player to db
         if (requestCode == NEW_PLAYER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Player player = new Player(data.getStringExtra("PLAYER_NAME"), data.getStringExtra("EMAIL"), data.getStringExtra("ID"));
             mPlayerViewModel.insert(player);
+
+        // Empty string, don't save
         } else {
             Toast.makeText(
                     getApplicationContext(),
@@ -128,8 +133,4 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
     }
-
-    // Add the functionality to swipe items in the
-
-
 }
