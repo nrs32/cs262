@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android=
+    "http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content">
+
+    <TextView
+    android:id="@+id/nameView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/name_view_style"
+    tools:text="placeholder text" />
+
+    <TextView
+        android:id="@+id/detailsView"
+        style="@style/detail_view_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="placeholder text" />
+</LinearLayout>
