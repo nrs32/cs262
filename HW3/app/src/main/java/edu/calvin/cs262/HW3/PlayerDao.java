@@ -10,7 +10,7 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
 /**
- * PlayerDao allows easy interaction with db
+ * PlayerDao (data access object) allows easy interaction with db Player table
  */
 @Dao
 public interface PlayerDao {

@@ -22,9 +22,9 @@ public class Player {
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    private String id;
+    private Integer id;
 
-    public Player(@NonNull String playerName, @NonNull String email, @NonNull String id) {
+    public Player(@NonNull String playerName, @NonNull String email, @NonNull Integer id) {
         this.playerName = playerName;
         this.email = email;
         this.id = id;
@@ -33,7 +33,7 @@ public class Player {
     // Getters for name, email, id
     public String getPlayerName(){return this.playerName;}
     public String getEmail(){return this.email;}
-    public String getId(){return this.id;}
+    public Integer getId(){return this.id;}
 
 }
 
