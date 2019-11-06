@@ -10,7 +10,7 @@ import androidx.lifecycle.LiveData;
 /**
  * Single source of truth for app data that UI can interact with
  */
-public class PlayerRepository {
+public class MonopolyRepository {
     // Player declarations
     private PlayerDao playerDao;
     private LiveData<List<Player>> allPlayers;
@@ -27,8 +27,8 @@ public class PlayerRepository {
 
 
     // Repo of tables
-    PlayerRepository(Application application) {
-        PlayerRoomDatabase db = PlayerRoomDatabase.getDatabase(application);
+    MonopolyRepository(Application application) {
+        MonopolyRoomDatabase db = MonopolyRoomDatabase.getDatabase(application);
         playerDao = db.playerDao();
         allPlayers = playerDao.getAllPlayers();
 

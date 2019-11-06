@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
-import androidx.room.Dao;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
@@ -14,19 +13,19 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
  * Manage source data with Player, Game, and PlayerGameJoin classes
  */
 @Database(entities = { Player.class, Game.class, PlayerGameJoin.class }, version = 1, exportSchema = false)
-public abstract class PlayerRoomDatabase extends RoomDatabase {
+public abstract class MonopolyRoomDatabase extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
     public abstract GameDao gameDao();
     public abstract PlayerGameJoinDao playerGameJoinDao();
-    private static PlayerRoomDatabase INSTANCE;
+    private static MonopolyRoomDatabase INSTANCE;
 
-    static PlayerRoomDatabase getDatabase(final Context context) {
+    static MonopolyRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            synchronized (PlayerRoomDatabase.class) {
+            synchronized (MonopolyRoomDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            PlayerRoomDatabase.class, "player_database")
+                            MonopolyRoomDatabase.class, "player_database")
                             // Wipes and rebuilds instead of migrating
                             // if no Migration object.
                             // Migration is not part of this practical.
@@ -57,7 +56,7 @@ public abstract class PlayerRoomDatabase extends RoomDatabase {
         private final PlayerDao playerDao;
         private final GameDao gameDao;
         private final PlayerGameJoinDao playerGameJoinDao;
-        PopulateDbAsync(PlayerRoomDatabase db) {
+        PopulateDbAsync(MonopolyRoomDatabase db) {
             playerDao = db.playerDao();
             gameDao = db.gameDao();
             playerGameJoinDao = db.playerGameJoinDao();

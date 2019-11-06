@@ -11,10 +11,10 @@ import androidx.lifecycle.LiveData;
  * Way to safely interact with data from MainActivity
  * Holds data for UI
  */
-public class PlayerViewModel extends AndroidViewModel {
+public class MonopolyViewModel extends AndroidViewModel {
 
     // Repo
-    private PlayerRepository mRepository;
+    private MonopolyRepository mRepository;
 
     // Players, Games, and PlayerGameJoins
     private LiveData<List<Player>> mAllPlayers;
@@ -22,9 +22,9 @@ public class PlayerViewModel extends AndroidViewModel {
     private LiveData<List<Game>> mAllGames;
 
     // ViewModel for tables
-    public PlayerViewModel(Application application) {
+    public MonopolyViewModel(Application application) {
         super(application);
-        mRepository = new PlayerRepository(application);
+        mRepository = new MonopolyRepository(application);
         mAllPlayers = mRepository.getAllPlayers();
         mAllGames = mRepository.getAllGames();
         mAllPlayerGameJoins = mRepository.getAllPlayerGameJoins();
