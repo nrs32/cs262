@@ -6,6 +6,7 @@
     <string name="button_save">Save</string>
     <string name="empty_not_saved">Player not saved because it is empty.</string>
     <string name="clear_all_data">Clear All Data</string>
+    <string name="test">Test</string>
     <string name="email_hint">Email...</string>
     <string name="id_hint">Id...</string>
 </resources>

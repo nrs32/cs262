@@ -8,11 +8,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Database;
 
 import android.util.Log;
 import android.view.View;
@@ -22,6 +25,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+/**
+ * Create UI for interacting with Player table
+ * and test Game and PlayerGameJoin tables
+ */
 public class MainActivity extends AppCompatActivity {
 
     private PlayerViewModel mPlayerViewModel;
@@ -85,6 +92,46 @@ public class MainActivity extends AppCompatActivity {
             });
 
         helper.attachToRecyclerView(recyclerView);
+
+        ///////////////////////////////////////////////////////////////////////
+        ///////////////// Test Game and PlayerGameJoin tables /////////////////
+        ///////////////////////////////////////////////////////////////////////
+        mPlayerViewModel.getPlayersForGame(1).observe(this, new Observer<List<Player>>() {
+            @Override
+            public void onChanged(@Nullable final List<Player> playerFromGame1) {
+                // Print expected players from game 1
+                Log.d("||||||||||||||||", " \n"
+                    + "\nPRINT ALL PLAYERS FROM GAME 1"
+                    + "\nExpected output is player Red      green@gmail.com  50"
+                    + "\nand                player Orange   blue@gmail.com   51");
+
+                // Print each Player received by query
+                for(int i = 0; i < playerFromGame1.size(); i++) {
+                    Player currentPlayer = playerFromGame1.get(i);
+                    Log.d("||||||||||||||||", " \n"
+                        + "\nName: " + currentPlayer.getPlayerName()
+                        + "\nEmail: " + currentPlayer.getEmail()
+                        + "\nId: "    + currentPlayer.getId());
+                }
+        }});
+
+        mPlayerViewModel.getGamesForPlayer(52).observe(this, new Observer<List<Game>>() {
+            @Override
+            public void onChanged(@Nullable final List<Game> gamesFromPlayer52) {
+                // Print expected games from player 52
+                Log.d("||||||||||||||||", " \n"
+                    + "\nPRINT ALL GAMES FROM PLAYER 52"
+                    + "\nExpected output is game 2    2019-06-29 8:45:00"
+                    + "\nand                game 3    2019-06-29 13:00:01");
+
+                // Print each Game received by query
+                for(int i = 0; i < gamesFromPlayer52.size(); i++) {
+                    Game currentGame =  gamesFromPlayer52.get(i);
+                    Log.d("||||||||||||||||", " \n"
+                        + "\nGame Time: " + currentGame.getTime()
+                        + "\nId: "         + currentGame.getId());
+                }
+            }});
     }
 
     @Override
@@ -114,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -122,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Add new player to db
         if (requestCode == NEW_PLAYER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Player player = new Player(data.getStringExtra("PLAYER_NAME"), data.getStringExtra("EMAIL"), data.getStringExtra("ID"));
+            Player player = new Player(data.getStringExtra("PLAYER_NAME"), data.getStringExtra("EMAIL"), data.getIntExtra("ID", 0));
             mPlayerViewModel.insert(player);
 
         // Empty string, don't save
