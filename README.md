@@ -1,6 +1,11 @@
 # Software Engineering
 Android Studio projects and screenshots of working applications.
 
+## Homework 3
+Create Monopoly Database with simple Player, Game, and PlayerGameJoin tables and UI for Player table
+![image](https://user-images.githubusercontent.com/38587739/68345486-6b77fa80-00bf-11ea-86c8-ee9439fd8de8.png)
+![image](https://user-images.githubusercontent.com/38587739/68345620-c4479300-00bf-11ea-81e6-a7938578345a.png)
+
 ## lab09
 Create Database to store words
 ![image](https://user-images.githubusercontent.com/38587739/68055576-5cf8a000-fcc7-11e9-8a5c-aec3fece30f8.png)
