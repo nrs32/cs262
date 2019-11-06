@@ -25,6 +25,10 @@ import android.widget.Toast;
 
 import java.util.List;
 
+/**
+ * Create UI for interacting with Player table
+ * and test Game and PlayerGameJoin tables
+ */
 public class MainActivity extends AppCompatActivity {
 
     private PlayerViewModel mPlayerViewModel;
@@ -90,61 +94,44 @@ public class MainActivity extends AppCompatActivity {
         helper.attachToRecyclerView(recyclerView);
 
         ///////////////////////////////////////////////////////////////////////
-        ////// Fill Game, Player, and PlayerGameJoin tables for testing ///////
+        ///////////////// Test Game and PlayerGameJoin tables /////////////////
         ///////////////////////////////////////////////////////////////////////
-//                    // Add Players
-//                    mPlayerViewModel.insert(new Player("red",    "green@gmail.com", 50));
-//                    mPlayerViewModel.insert(new Player("orange", "blue@gmail.com",  51));
-//                    mPlayerViewModel.insert(new Player("yellow", "purple@gmail.com",52));
-//
-//                    // Add Games
-//                    mPlayerViewModel.insert(new Game("2006-06-29 18:41:00", 1));
-//                    mPlayerViewModel.insert(new Game("2019-06-29 8:45:00",  2));
-//                    mPlayerViewModel.insert(new Game("2019-06-29 13:00:01", 3));
-//
-//                    // Add PlayerGameJoins
-//                    mPlayerViewModel.insert(new PlayerGameJoin(1, 50));
-//                    mPlayerViewModel.insert(new PlayerGameJoin(1, 51));
-//                    mPlayerViewModel.insert(new PlayerGameJoin(2, 52));
-//                    mPlayerViewModel.insert(new PlayerGameJoin(3, 52));
+        mPlayerViewModel.getPlayersForGame(1).observe(this, new Observer<List<Player>>() {
+            @Override
+            public void onChanged(@Nullable final List<Player> playerFromGame1) {
+                // Print expected players from game 1
+                Log.d("||||||||||||||||", " \n"
+                    + "\nPRINT ALL PLAYERS FROM GAME 1"
+                    + "\nExpected output is player Red      green@gmail.com  50"
+                    + "\nand                player Orange   blue@gmail.com   51");
 
-//        // Get LiveData result of players from Game 1 and games from Player 52
-//        LiveData<List<Player>> playersFromGame1 = PlayerGameJoinViewModel.getPlayersForGame(1);
-//        LiveData<List<Game>> gamesFromPlayer52 = PlayerGameJoinViewModel.getGamesForPlayer(52);
-// //----------------------------------------DOINBACKGROUND() IS COMMENTED OUT in all 3 classes!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//
-//        // Print expected players from game 1
-//        Log.d("||||||||||||||||\n\n", "PRINT ALL PLAYERS FROM GAME 1"
-//                + "\nExpected output is player Red      green@gmail.com  50"
-//                + "\nand                player Orange   blue@gmail.com   51");
-//
-//        // Extract result into regular List of Players
-//        List<Player> resultPlayerFromGame1 = playersFromGame1.getValue();
-//
-//        // Print each Player received by query
-//        for(int i = 0; i < resultPlayerFromGame1.size(); i++) {
-//            Player currentPlayer = resultPlayerFromGame1.get(i);
-//            Log.d("||||||||||||||||\n\n",
-//                    "Name: " + currentPlayer.getPlayerName()
-//                            + "\nEmail: " + currentPlayer.getEmail()
-//                            + "\nId: "    + currentPlayer.getId());
-//        }
-//
-//        // Print expected games from player 52
-//        Log.d("||||||||||||||||\n\n", "PRINT ALL GAMES FROM PLAYER 52"
-//                + "\nExpected output is game 2    2019-06-29 8:45:00"
-//                + "\nand                game 3    2019-06-29 13:00:01");
-//
-//        // Extract result into regular List of Games
-//        List<Game> resultGamesFromPlayer52 = gamesFromPlayer52.getValue();
-//
-//        // Print each Game received by query
-//        for(int i = 0; i < resultGamesFromPlayer52.size(); i++) {
-//            Game currentGame =  resultGamesFromPlayer52.get(i);
-//            Log.d("||||||||||||||||\n\n",
-//                    "Game Time: " + currentGame.getTime()
-//                    + "\nId: "         + currentGame.getId());
-//        }
+                // Print each Player received by query
+                for(int i = 0; i < playerFromGame1.size(); i++) {
+                    Player currentPlayer = playerFromGame1.get(i);
+                    Log.d("||||||||||||||||", " \n"
+                        + "\nName: " + currentPlayer.getPlayerName()
+                        + "\nEmail: " + currentPlayer.getEmail()
+                        + "\nId: "    + currentPlayer.getId());
+                }
+        }});
+
+        mPlayerViewModel.getGamesForPlayer(52).observe(this, new Observer<List<Game>>() {
+            @Override
+            public void onChanged(@Nullable final List<Game> gamesFromPlayer52) {
+                // Print expected games from player 52
+                Log.d("||||||||||||||||", " \n"
+                    + "\nPRINT ALL GAMES FROM PLAYER 52"
+                    + "\nExpected output is game 2    2019-06-29 8:45:00"
+                    + "\nand                game 3    2019-06-29 13:00:01");
+
+                // Print each Game received by query
+                for(int i = 0; i < gamesFromPlayer52.size(); i++) {
+                    Game currentGame =  gamesFromPlayer52.get(i);
+                    Log.d("||||||||||||||||", " \n"
+                        + "\nGame Time: " + currentGame.getTime()
+                        + "\nId: "         + currentGame.getId());
+                }
+            }});
     }
 
     @Override

@@ -52,13 +52,13 @@ public class PlayerRepository {
         return allPlayerGameJoins;
     }
 
-    LiveData<List<Player>> getPlayersForGame(final int playerId) {
-        allPlayersForGame = playerGameJoinDao.getPlayersForGame(playerId);
+    LiveData<List<Player>> getPlayersForGame(final int gameId) {
+        allPlayersForGame = playerGameJoinDao.getPlayersForGame(gameId);
         return allPlayersForGame;
     }
 
-    LiveData<List<Game>> getGamesForPlayer(final int  gameId) {
-        allGamesForPlayer = playerGameJoinDao.getGamesForPlayer(gameId);
+    LiveData<List<Game>> getGamesForPlayer(final int  playerId) {
+        allGamesForPlayer = playerGameJoinDao.getGamesForPlayer(playerId);
         return allGamesForPlayer;
     }
 

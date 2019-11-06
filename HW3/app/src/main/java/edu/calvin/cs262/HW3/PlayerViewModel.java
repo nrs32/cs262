@@ -34,6 +34,13 @@ public class PlayerViewModel extends AndroidViewModel {
     LiveData<List<Player>> getAllPlayers() { return mAllPlayers; }
     LiveData<List<Game>> getAllGames() { return mAllGames; }
     LiveData<List<PlayerGameJoin>> getAllPlayerGameJoins() { return mAllPlayerGameJoins; }
+    LiveData<List<Player>> getPlayersForGame(final int gameId) {
+        return mRepository.getPlayersForGame(gameId);
+    }
+
+    LiveData<List<Game>> getGamesForPlayer(final int  playerId) {
+        return mRepository.getGamesForPlayer(playerId);
+    }
 
     // Insert methods
     public void insert(Player player) { mRepository.insert(player); }
