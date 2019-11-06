@@ -8,14 +8,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Database;
 
 import android.util.Log;
 import android.view.View;
@@ -31,7 +28,7 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private PlayerViewModel mPlayerViewModel;
+    private MonopolyViewModel mMonopolyViewModel;
     public static final int NEW_PLAYER_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
@@ -57,9 +54,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mPlayerViewModel = ViewModelProviders.of(this).get(PlayerViewModel.class);
+        mMonopolyViewModel = ViewModelProviders.of(this).get(MonopolyViewModel.class);
 
-        mPlayerViewModel.getAllPlayers().observe(this, new Observer<List<Player>>() {
+        mMonopolyViewModel.getAllPlayers().observe(this, new Observer<List<Player>>() {
             @Override
             public void onChanged(@Nullable final List<Player> player) {
                 // Update the cached copy of the player in the adapter.
@@ -87,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                             myPlayer.getPlayerName(), Toast.LENGTH_LONG).show();
 
                     // Delete the player
-                    mPlayerViewModel.deletePlayer(myPlayer);
+                    mMonopolyViewModel.deletePlayer(myPlayer);
                 }
             });
 
@@ -96,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         ///////////////////////////////////////////////////////////////////////
         ///////////////// Test Game and PlayerGameJoin tables /////////////////
         ///////////////////////////////////////////////////////////////////////
-        mPlayerViewModel.getPlayersForGame(1).observe(this, new Observer<List<Player>>() {
+        mMonopolyViewModel.getPlayersForGame(1).observe(this, new Observer<List<Player>>() {
             @Override
             public void onChanged(@Nullable final List<Player> playerFromGame1) {
                 // Print expected players from game 1
@@ -115,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                 }
         }});
 
-        mPlayerViewModel.getGamesForPlayer(52).observe(this, new Observer<List<Game>>() {
+        mMonopolyViewModel.getGamesForPlayer(52).observe(this, new Observer<List<Game>>() {
             @Override
             public void onChanged(@Nullable final List<Game> gamesFromPlayer52) {
                 // Print expected games from player 52
@@ -156,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT).show();
 
             // Delete the existing data
-            mPlayerViewModel.deleteAll();
+            mMonopolyViewModel.deleteAll();
             return true;
         }
 
@@ -169,7 +166,7 @@ public class MainActivity extends AppCompatActivity {
         // Add new player to db
         if (requestCode == NEW_PLAYER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Player player = new Player(data.getStringExtra("PLAYER_NAME"), data.getStringExtra("EMAIL"), data.getIntExtra("ID", 0));
-            mPlayerViewModel.insert(player);
+            mMonopolyViewModel.insert(player);
 
         // Empty string, don't save
         } else {
