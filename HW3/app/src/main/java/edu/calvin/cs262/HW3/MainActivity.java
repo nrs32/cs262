@@ -80,11 +80,16 @@ public class MainActivity extends AppCompatActivity {
                                      int direction) {
                     int position = viewHolder.getAdapterPosition();
                     Player myPlayer = adapter.getPlayerAtPosition(position);
-                    Toast.makeText(MainActivity.this, "Deleting " +
-                            myPlayer.getPlayerName(), Toast.LENGTH_LONG).show();
+                    Integer playerId = myPlayer.getId();
+                    if (playerId == 50 || playerId == 51 || playerId == 51) {
+                        Toast.makeText(MainActivity.this, "You may not delete the presets :(", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(MainActivity.this, "Deleting " +
+                                myPlayer.getPlayerName(), Toast.LENGTH_LONG).show();
 
-                    // Delete the player
-                    mMonopolyViewModel.deletePlayer(myPlayer);
+                        // Delete the player
+                        mMonopolyViewModel.deletePlayer(myPlayer);
+                    }
                 }
             });
 
