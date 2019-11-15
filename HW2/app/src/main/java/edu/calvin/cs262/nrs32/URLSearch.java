@@ -16,14 +16,22 @@ import androidx.annotation.Nullable;
  * URLSearch is an AsyncTaskLoading that takes a url string and loads in the source code from that address in the background
  */
 public class URLSearch extends AsyncTaskLoader {
-    private String urlString;
+    private final String urlString;
 
+    /**
+     * Save queryString as urlString for use in activity
+     * @param context function context
+     * @param queryString The string from user to search with
+     */
     public URLSearch(@NonNull Context context, String queryString) {
         super(context);
         urlString = queryString;
     }
 
-    // Use url string to load in source code and convert to string to return
+    /**
+     * Use url string to load in source code and convert to string to return
+     * @return the html resutls
+     */
     @Nullable
     @Override
     public String loadInBackground() {

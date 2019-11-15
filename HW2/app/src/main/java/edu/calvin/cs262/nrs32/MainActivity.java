@@ -13,38 +13,44 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+/**
+ * Get source code from a given url address and display.
+ */
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
 
-    Spinner protocol;
-    String[] dropdownOptions = {"https://", "http://"};
+    private Spinner protocol;
+    private final String[] dropdownOptions = {"https://", "http://"};
     private EditText websiteURL;
     private TextView pageSourceText;
 
+    /**
+     * Create protocol options and get views
+     *
+     * @param savedInstanceState the current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Create protocol options dropdown
-        protocol = (Spinner) findViewById(R.id.protocol_dropdown);
+        protocol = findViewById(R.id.protocol_dropdown);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1, dropdownOptions);
         protocol.setAdapter(adapter);
 
-        websiteURL = (EditText)findViewById(R.id.websiteURLInput);
-        pageSourceText = (TextView)findViewById(R.id.pageSourceText);
+        websiteURL = findViewById(R.id.websiteURLInput);
+        pageSourceText = findViewById(R.id.pageSourceText);
     }
 
-    // Create connection and URL string combining protocol and source address
+    /**
+     * Create connection and URL string combining protocol and source address
+     *
+     * @param view app view item
+     */
     public void getPageSource(View view) {
         // Get the search string from the input field.
         String urlString = websiteURL.getText().toString();
@@ -54,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        if (inputManager != null ) {
+        if (inputManager != null) {
             inputManager.hideSoftInputFromWindow(view.getWindowToken(),
                     InputMethodManager.HIDE_NOT_ALWAYS);
         }
@@ -80,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             pageSourceText.setText("Loading...");
 
-        // No search term or no network
+            // No search term or no network
         } else {
             if (urlString.length() == 0) {
                 pageSourceText.setText("");
@@ -90,31 +96,47 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
     }
 
-    // Call URLSearch to retrieve source code from the given URL
+    /**
+     * Call URLSearch to retrieve source code from the given URL
+     *
+     * @param id - required unused param
+     * @param args Bundle containing a urlString
+     * @return search results
+     */
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
         String urlSource = "";
 
-        if (args != null) { urlSource = args.getString("urlString"); }
+        if (args != null) {
+            urlSource = args.getString("urlString");
+        }
 
         return new URLSearch(this, urlSource);
     }
 
-    // Get the results from URLSearch and display them
+    /**
+     * Get the results from URLSearch and display them
+     *
+     * @param loader - required unused param
+     * @param data The results of the query
+     */
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        String results = data;
-        if (results != null) {
-            pageSourceText.setText(results);
+        if (data != null) {
+            pageSourceText.setText(data);
 
-        // no valid response
+            // no valid response
         } else {
             pageSourceText.setText("");
         }
     }
 
-    // Required stub, intentionally unused
+    /**
+     * Required stub, intentionally unused
+     *
+     * @param loader - unused
+     */
     @Override
     public void onLoaderReset(@NonNull Loader<String> loader) {
     }

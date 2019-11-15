@@ -21,9 +21,8 @@
         android:layout_width="226dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
-        android:autofillHints=""
         android:hint="@string/www_example_com"
-        android:inputType="text"
+        android:inputType="textUri"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/protocol_dropdown"
@@ -45,7 +44,6 @@
         app:layout_constraintTop_toBottomOf="@+id/websiteURLInput" />
 
     <LinearLayout
-        android:id="@+id/linearContainerPageSource"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="3dp"
@@ -63,7 +61,6 @@
         app:layout_constraintTop_toBottomOf="@+id/getSourceButton">
 
         <ScrollView
-            android:id="@+id/pageSource"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:alwaysDrawnWithCache="false"
