@@ -10,6 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+/**
+ * MainActivity builds a calculator which can add, subtract, multiply, and divide integers
+ */
 public class MainActivity extends AppCompatActivity {
 
     private Spinner operationDropdown;
@@ -65,6 +68,9 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Listener to print info on app pause
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -72,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("|||||||||||||||INSIDE ON PAUSE|||||||||||||||");
     }
 
+    /**
+     * Listener to print info on app resume
+     */
     @Override
     protected void onResume() {
         super.onResume();
