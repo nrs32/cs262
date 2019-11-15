@@ -13,12 +13,12 @@ public class Game {
 
     @NonNull
     @ColumnInfo(name = "time")
-    private String time;
+    private final String time;
 
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    private Integer id;
+    private final Integer id;
 
     public Game(@NonNull String time, @NonNull Integer id) {
         this.time = time;
@@ -26,7 +26,7 @@ public class Game {
     }
 
     // Getters for time and id
-    public String getTime(){return this.time;}
-    public Integer getId(){return this.id;}
+    @NonNull public String getTime(){return this.time;}
+    @NonNull public Integer getId(){return this.id;}
 
 }

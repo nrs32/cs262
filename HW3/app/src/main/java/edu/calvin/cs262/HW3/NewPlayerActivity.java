@@ -15,13 +15,15 @@ import android.widget.EditText;
  */
 public class NewPlayerActivity extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY =
-            "com.example.android.roomplayerssample.REPLY";
-
+    // Get input fields
     private EditText editPlayerName;
     private EditText editPlayerEmail;
     private EditText editPlayerId;
 
+    /**
+     * Save inputs for creating new player and send input strings to MainActivity on finish
+     * @param savedInstanceState The current instance state
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

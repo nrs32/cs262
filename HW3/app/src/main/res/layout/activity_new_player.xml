@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorScreenBackground"
     android:orientation="vertical"
     android:padding="24dp">
 
@@ -10,19 +9,22 @@
         android:id="@+id/edit_player_name"
         style="@style/name_view_style"
         android:hint="@string/hint_player"
-        android:inputType="textAutoComplete" />
+        android:inputType="textAutoComplete"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/edit_email"
         style="@style/name_view_style"
         android:hint="@string/email_hint"
-        android:inputType="textAutoComplete" />
+        android:inputType="textEmailAddress"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/edit_id"
         style="@style/name_view_style"
         android:hint="@string/id_hint"
-        android:inputType="textAutoComplete" />
+        android:inputType="textAutoComplete"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/button_save"

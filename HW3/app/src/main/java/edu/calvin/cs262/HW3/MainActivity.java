@@ -29,8 +29,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private MonopolyViewModel mMonopolyViewModel;
-    public static final int NEW_PLAYER_ACTIVITY_REQUEST_CODE = 1;
+    private static final int NEW_PLAYER_ACTIVITY_REQUEST_CODE = 1;
 
+    /**
+     * Set up and display recycler view items and
+     * test Game and PlayerGameJoin tables on MainActivity creation
+     * @param savedInstanceState current instance state
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // set up recycler view
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
+        RecyclerView recyclerView = findViewById(R.id.recycler_view);
         final PlayerListAdapter adapter = new PlayerListAdapter(this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -68,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
         ItemTouchHelper helper = new ItemTouchHelper(
             new ItemTouchHelper.SimpleCallback(0,
                     ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+                /**
+                 * Required, do nothing on move (only swipe)
+                 * @param recyclerView View being moved
+                 * @param viewHolder holder of view
+                 * @param target target
+                 * @return false
+                 */
                 @Override
                 public boolean onMove(RecyclerView recyclerView,
                                       RecyclerView.ViewHolder viewHolder,
@@ -75,14 +88,23 @@ public class MainActivity extends AppCompatActivity {
                     return false;
                 }
 
+                /**
+                 * Delete a player when swiped off the screen
+                 * @param viewHolder view holder for player
+                 * @param direction direction of swipe
+                 */
                 @Override
                 public void onSwiped(RecyclerView.ViewHolder viewHolder,
                                      int direction) {
                     int position = viewHolder.getAdapterPosition();
                     Player myPlayer = adapter.getPlayerAtPosition(position);
-                    Integer playerId = myPlayer.getId();
-                    if (playerId == 50 || playerId == 51 || playerId == 51) {
+                    int playerId = myPlayer.getId();
+
+                    // Check is player is default player and do not delete
+                    if (playerId == 50 || playerId == 51 || playerId == 52) {
                         Toast.makeText(MainActivity.this, "You may not delete the presets :(", Toast.LENGTH_LONG).show();
+
+                    // Delete player
                     } else {
                         Toast.makeText(MainActivity.this, "Deleting " +
                                 myPlayer.getPlayerName(), Toast.LENGTH_LONG).show();
@@ -136,6 +158,11 @@ public class MainActivity extends AppCompatActivity {
             }});
     }
 
+    /**
+     * Create menu in top right to delete all
+     * @param menu the Menu object
+     * @return true
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -144,6 +171,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * Handle action bar item clicks
+     * @param item item being clicked
+     * @return true
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -165,6 +197,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Handle new player input form completion.
+     * If player id does not exist, add to db
+     * @param requestCode code signifying what request is giving results
+     * @param resultCode should be okay if no errors occur
+     * @param data the extras returned by previous activity to use for new player
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 

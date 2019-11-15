@@ -2,9 +2,7 @@ package edu.calvin.cs262.HW3;
 
 import android.app.Application;
 import android.os.AsyncTask;
-
 import java.util.List;
-
 import androidx.lifecycle.LiveData;
 
 /**
@@ -12,18 +10,16 @@ import androidx.lifecycle.LiveData;
  */
 public class MonopolyRepository {
     // Player declarations
-    private PlayerDao playerDao;
-    private LiveData<List<Player>> allPlayers;
+    private final PlayerDao playerDao;
+    private final LiveData<List<Player>> allPlayers;
 
     // PlayerGameJoin declarations
-    private PlayerGameJoinDao playerGameJoinDao;
-    private LiveData<List<PlayerGameJoin>> allPlayerGameJoins;
-    private LiveData<List<Player>> allPlayersForGame;
-    private LiveData<List<Game>> allGamesForPlayer;
+    private final PlayerGameJoinDao playerGameJoinDao;
+    private final LiveData<List<PlayerGameJoin>> allPlayerGameJoins;
 
     // Game declarations
-    private GameDao gameDao;
-    private LiveData<List<Game>> allGames;
+    private final GameDao gameDao;
+    private final LiveData<List<Game>> allGames;
 
 
     // Repo of tables
@@ -53,13 +49,11 @@ public class MonopolyRepository {
     }
 
     LiveData<List<Player>> getPlayersForGame(final int gameId) {
-        allPlayersForGame = playerGameJoinDao.getPlayersForGame(gameId);
-        return allPlayersForGame;
+        return playerGameJoinDao.getPlayersForGame(gameId);
     }
 
     LiveData<List<Game>> getGamesForPlayer(final int  playerId) {
-        allGamesForPlayer = playerGameJoinDao.getGamesForPlayer(playerId);
-        return allGamesForPlayer;
+        return playerGameJoinDao.getGamesForPlayer(playerId);
     }
 
     ////////////////// INSERT PLAYER //////////////////
@@ -72,7 +66,7 @@ public class MonopolyRepository {
      */
     private static class insertPlayerAsyncTask extends AsyncTask<Player, Void, Void> {
 
-        private PlayerDao mAsyncTaskDao;
+        private final PlayerDao mAsyncTaskDao;
 
         insertPlayerAsyncTask(PlayerDao dao) {
             mAsyncTaskDao = dao;
@@ -95,7 +89,7 @@ public class MonopolyRepository {
      */
     private static class insertGameAsyncTask extends AsyncTask<Game, Void, Void> {
 
-        private GameDao mAsyncTaskDao;
+        private final GameDao mAsyncTaskDao;
 
         insertGameAsyncTask(GameDao dao) {
             mAsyncTaskDao = dao;
@@ -118,7 +112,7 @@ public class MonopolyRepository {
      */
     private static class insertPlayerGameJoinAsyncTask extends AsyncTask<PlayerGameJoin, Void, Void> {
 
-        private PlayerGameJoinDao mAsyncTaskDao;
+        private final PlayerGameJoinDao mAsyncTaskDao;
 
         insertPlayerGameJoinAsyncTask(PlayerGameJoinDao dao) {
             mAsyncTaskDao = dao;
@@ -140,7 +134,7 @@ public class MonopolyRepository {
      * Use AsyncTask to delete a single player and maintain performance
      */
     private static class deletePlayerAsyncTask extends AsyncTask<Player, Void, Void> {
-        private PlayerDao mAsyncTaskDao;
+        private final PlayerDao mAsyncTaskDao;
 
         deletePlayerAsyncTask(PlayerDao dao) {
             mAsyncTaskDao = dao;
@@ -162,7 +156,7 @@ public class MonopolyRepository {
      * Use AsyncTask to delete a single playerGameJoin and maintain performance
      */
     private static class deletePlayerGameJoinAsyncTask extends AsyncTask<PlayerGameJoin, Void, Void> {
-        private PlayerGameJoinDao mAsyncTaskDao;
+        private final PlayerGameJoinDao mAsyncTaskDao;
 
         deletePlayerGameJoinAsyncTask(PlayerGameJoinDao dao) {
             mAsyncTaskDao = dao;
@@ -184,7 +178,7 @@ public class MonopolyRepository {
      * Use AsyncTask to delete a single game and maintain performance
      */
     private static class deleteGameAsyncTask extends AsyncTask<Game, Void, Void> {
-        private GameDao mAsyncTaskDao;
+        private final GameDao mAsyncTaskDao;
 
         deleteGameAsyncTask(GameDao dao) {
             mAsyncTaskDao = dao;
@@ -208,7 +202,7 @@ public class MonopolyRepository {
      * Use AsyncTask to delete all playerGameJoins and maintain performance
      */
     private static class deleteAllPlayerGameJoinsAsyncTask extends AsyncTask<Void, Void, Void> {
-        private PlayerGameJoinDao mAsyncTaskDao;
+        private final PlayerGameJoinDao mAsyncTaskDao;
 
         deleteAllPlayerGameJoinsAsyncTask(PlayerGameJoinDao dao) {
             mAsyncTaskDao = dao;
@@ -225,7 +219,7 @@ public class MonopolyRepository {
      * Use AsyncTask to delete all players and maintain performance
      */
     private static class deleteAllPlayersAsyncTask extends AsyncTask<Void, Void, Void> {
-        private PlayerDao mAsyncTaskDao;
+        private final PlayerDao mAsyncTaskDao;
 
         deleteAllPlayersAsyncTask(PlayerDao dao) {
             mAsyncTaskDao = dao;
@@ -242,7 +236,7 @@ public class MonopolyRepository {
      * Use AsyncTask to delete all games and maintain performance
      */
     private static class deleteAllGamesAsyncTask extends AsyncTask<Void, Void, Void> {
-        private GameDao mAsyncTaskDao;
+        private final GameDao mAsyncTaskDao;
 
         deleteAllGamesAsyncTask(GameDao dao) {
             mAsyncTaskDao = dao;

@@ -6,6 +6,4 @@
     <color name="colorPrimaryDark">#EC1B4B</color>
     <color name="colorAccent">#EC1B4B</color>
     <color name="colorTextPrimary">@android:color/white</color>
-    <color name="colorScreenBackground">#ffffff</color>
-    <color name="colorTextHint">#E0E0E0</color>
 </resources>

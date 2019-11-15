@@ -13,16 +13,16 @@ public class Player {
 
     @NonNull
     @ColumnInfo(name = "playerName")
-    private String playerName;
+    private final String playerName;
 
     @NonNull
     @ColumnInfo(name = "email")
-    private String email;
+    private final String email;
 
     @PrimaryKey
     @NonNull
     @ColumnInfo(name = "id")
-    private Integer id;
+    private final Integer id;
 
     public Player(@NonNull String playerName, @NonNull String email, @NonNull Integer id) {
         this.playerName = playerName;
@@ -31,9 +31,9 @@ public class Player {
     }
 
     // Getters for name, email, id
-    public String getPlayerName(){return this.playerName;}
-    public String getEmail(){return this.email;}
-    public Integer getId(){return this.id;}
+    @NonNull public String getPlayerName(){return this.playerName;}
+    @NonNull public String getEmail(){return this.email;}
+    @NonNull public Integer getId(){return this.id;}
 
 }
 

@@ -20,6 +20,11 @@ public abstract class MonopolyRoomDatabase extends RoomDatabase {
     public abstract PlayerGameJoinDao playerGameJoinDao();
     private static MonopolyRoomDatabase INSTANCE;
 
+    /**
+     * retrieve database instance
+     * @param context app context
+     * @return instance of db
+     */
     static MonopolyRoomDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (MonopolyRoomDatabase.class) {
@@ -38,7 +43,10 @@ public abstract class MonopolyRoomDatabase extends RoomDatabase {
         return INSTANCE;
     }
 
-    private static RoomDatabase.Callback sRoomDatabaseCallback =
+    /**
+     * Callback to populate db initially
+     */
+    private static final RoomDatabase.Callback sRoomDatabaseCallback =
             new RoomDatabase.Callback(){
 
                 @Override
@@ -62,6 +70,11 @@ public abstract class MonopolyRoomDatabase extends RoomDatabase {
             playerGameJoinDao = db.playerGameJoinDao();
         }
 
+        /**
+         * Tasks to populate db initially in background
+         * @param params - required
+         * @return null
+         */
         @Override
         protected Void doInBackground(final Void... params) {
 

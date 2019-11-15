@@ -14,12 +14,12 @@ import androidx.lifecycle.LiveData;
 public class MonopolyViewModel extends AndroidViewModel {
 
     // Repo
-    private MonopolyRepository mRepository;
+    private final MonopolyRepository mRepository;
 
     // Players, Games, and PlayerGameJoins
-    private LiveData<List<Player>> mAllPlayers;
-    private LiveData<List<PlayerGameJoin>> mAllPlayerGameJoins;
-    private LiveData<List<Game>> mAllGames;
+    private final LiveData<List<Player>> mAllPlayers;
+    private final LiveData<List<PlayerGameJoin>> mAllPlayerGameJoins;
+    private final LiveData<List<Game>> mAllGames;
 
     // ViewModel for tables
     public MonopolyViewModel(Application application) {
@@ -31,27 +31,54 @@ public class MonopolyViewModel extends AndroidViewModel {
     }
 
     // Get all from a table
-    LiveData<List<Player>> getAllPlayers() { return mAllPlayers; }
-    LiveData<List<Game>> getAllGames() { return mAllGames; }
-    LiveData<List<PlayerGameJoin>> getAllPlayerGameJoins() { return mAllPlayerGameJoins; }
+    LiveData<List<Player>> getAllPlayers() {
+        return mAllPlayers;
+    }
+
+    LiveData<List<Game>> getAllGames() {
+        return mAllGames;
+    }
+
+    LiveData<List<PlayerGameJoin>> getAllPlayerGameJoins() {
+        return mAllPlayerGameJoins;
+    }
+
     LiveData<List<Player>> getPlayersForGame(final int gameId) {
         return mRepository.getPlayersForGame(gameId);
     }
 
-    LiveData<List<Game>> getGamesForPlayer(final int  playerId) {
+    LiveData<List<Game>> getGamesForPlayer(final int playerId) {
         return mRepository.getGamesForPlayer(playerId);
     }
 
     // Insert methods
-    public void insert(Player player) { mRepository.insert(player); }
-    public void insert(Game game) { mRepository.insert(game); }
-    public void insert(PlayerGameJoin playerGameJoin) { mRepository.insert(playerGameJoin); }
+    public void insert(Player player) {
+        mRepository.insert(player);
+    }
+
+    public void insert(Game game) {
+        mRepository.insert(game);
+    }
+
+    public void insert(PlayerGameJoin playerGameJoin) {
+        mRepository.insert(playerGameJoin);
+    }
 
     // Delete methods
-    public void deletePlayer(Player player) {mRepository.deletePlayer(player);}
-    public void deleteGame(Game game) {mRepository.deleteGame(game);}
-    public void deletePlayerGameJoin(PlayerGameJoin playerGameJoin) {mRepository.deletePlayerGameJoin(playerGameJoin);}
-    
+    public void deletePlayer(Player player) {
+        mRepository.deletePlayer(player);
+    }
+
+    public void deleteGame(Game game) {
+        mRepository.deleteGame(game);
+    }
+
+    public void deletePlayerGameJoin(PlayerGameJoin playerGameJoin) {
+        mRepository.deletePlayerGameJoin(playerGameJoin);
+    }
+
     // Delete all from repo
-    public void deleteAll() {mRepository.deleteAll();}
+    public void deleteAll() {
+        mRepository.deleteAll();
+    }
 }

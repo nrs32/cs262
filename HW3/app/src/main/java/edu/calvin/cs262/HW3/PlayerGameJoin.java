@@ -19,8 +19,8 @@ import androidx.room.ForeignKey;
             childColumns = "playerId")
     })
 public class PlayerGameJoin {
-     public final int gameId;
-     public final int playerId;
+    final int gameId;
+    final int playerId;
 
      public PlayerGameJoin(final int gameId, final int playerId) {
          this.gameId = gameId;
