@@ -89,7 +89,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toEndOf="@+id/Value1_label"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint=""
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/value_2"
@@ -101,7 +103,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toEndOf="@+id/value2_label"
-        app:layout_constraintTop_toBottomOf="@+id/value_1" />
+        app:layout_constraintTop_toBottomOf="@+id/value_1"
+        android:hint=""
+        android:importantForAutofill="no" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
